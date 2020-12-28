@@ -1,0 +1,32 @@
+﻿@model WebApplication.Models.client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробная информация о клиенте</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Имя</dt>
+        <dd>@Html.DisplayFor(model => model.firstname)</dd>
+        <dt>Фамилия</dt>
+        <dd>@Html.DisplayFor(model => model.lastname)</dd>
+        <dt>Отчество</dt>
+        <dd>@Html.DisplayFor(model => model.patronymic)</dd>
+        <dt>Логин</dt>
+        <dd>@Html.DisplayFor(model => model.login)</dd>
+        <dt>Пароль</dt>
+        <dd>@Html.DisplayFor(model => model.password)</dd>
+        <dt>Почта</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+        <dt>Адрес</dt>
+        <dd>@Html.DisplayFor(model => model.address)</dd>
+        <dt>Телефон</dt>
+        <dd>@Html.DisplayFor(model => model.phone)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Править", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("К списку клиентов", "Index")
+</p>

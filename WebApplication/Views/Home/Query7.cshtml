@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Query7Result>
+@{
+    ViewBag.Title = "Результат запроса";
+}
+
+<h2>Результат запроса</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Номер</th>
+        <th>Название</th>
+        <th>Родитель</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.id)</td>
+        <td>@Html.ActionLink(item.name, "Details", "categories", new { id = item.id }, null)</td>
+        <td>@Html.ActionLink(item.parentName, "Details", "categories", new { id = item.parentId }, null)</td>
+    </tr>
+    }
+
+</table>

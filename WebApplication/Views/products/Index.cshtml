@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication.Models.product>
+@{
+    ViewBag.Title = "Index";
+}
+<h2 class="text-center">Товары</h2>
+<p>
+    @Html.ActionLink("Создать продукт", "Create")
+</p>
+@using (Html.BeginForm("Search", "Products", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <div class="col-md-2 text-center">
+            <label for="query">
+                <input type="text" name="search" class="form-control" />
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Поиск" class="btn btn-default" />
+        </div>
+    </div>
+}
+<table class="table">
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Количество на складе</th>
+        <th>Версия</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.name)</td>
+            <td>@Html.DisplayFor(modelItem => item.price)</td>
+            <td>@Html.DisplayFor(modelItem => item.count)</td>
+            <td>@Html.DisplayFor(modelItem => item.version)</td>
+            <td>
+                @Html.ActionLink("Править", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Детали", "Details", new { id = item.id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+</table>

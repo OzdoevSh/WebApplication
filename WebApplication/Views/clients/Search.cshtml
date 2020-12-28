@@ -1,0 +1,40 @@
+﻿@model IEnumerable<WebApplication.Models.client>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2 class="text-center">Результаты поиска</h2>
+
+<table class="table">
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Почта</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.firstname)</td>
+            <td>@Html.DisplayFor(modelItem => item.lastname)</td>
+            <td>@Html.DisplayFor(modelItem => item.patronymic)</td>
+            <td>@Html.DisplayFor(modelItem => item.email)</td>
+            <td>@Html.DisplayFor(modelItem => item.address)</td>
+            <td>@Html.DisplayFor(modelItem => item.phone)</td>
+            <td>@Html.DisplayFor(modelItem => item.login)</td>
+            <td>@Html.DisplayFor(modelItem => item.password)</td>
+            <td>
+                @Html.ActionLink("Править", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Детали", "Details", new { id = item.id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+</table>

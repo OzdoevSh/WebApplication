@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Query8Result>
+@{
+    ViewBag.Title = "Результат запроса";
+}
+
+<h2>Результат запроса</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Почта</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Логин</th>
+        <th>Депозит</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Количество</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.firstname)</td>
+            <td>@Html.DisplayFor(modelItem => item.lastname)</td>
+            <td>@Html.DisplayFor(modelItem => item.patronymic)</td>
+            <td>@Html.DisplayFor(modelItem => item.email)</td>
+            <td>@Html.DisplayFor(modelItem => item.address)</td>
+            <td>@Html.DisplayFor(modelItem => item.phone)</td>
+            <td>@Html.DisplayFor(modelItem => item.login)</td>
+            <td>@Html.DisplayFor(modelItem => item.deposit)</td>
+            <td>@Html.DisplayFor(modelItem => item.productname)</td>
+            <td>@Html.DisplayFor(modelItem => item.productprice)</td>
+            <td>@Html.DisplayFor(modelItem => item.count)</td>
+
+        </tr>
+    }
+
+</table>

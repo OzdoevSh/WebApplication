@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Query4Result>
+@{
+    ViewBag.Title = "Результат запроса";
+}
+
+<h2>Результат запроса</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Адрес</th>
+        <th>Почта</th>
+        <th>Телефон</th>
+        <th>Название товара</th>
+        <th>Цена товара</th>
+        <th>Количество</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.firstName</td>
+            <td>@item.lastName</td>
+            <td>@item.patronymic</td>
+            <td>@item.address</td>
+            <td>@item.email</td>
+            <td>@item.phone</td>
+            <td>@item.productName</td>
+            <td>@item.productPrice</td>
+            <td>@item.count</td>
+        </tr>
+    }
+
+</table>

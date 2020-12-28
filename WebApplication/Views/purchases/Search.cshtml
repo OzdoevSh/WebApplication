@@ -1,0 +1,29 @@
+﻿@model IEnumerable<WebApplication.Models.purchase>
+@{
+    ViewBag.Title = "Search";
+}
+<h2>Результаты поиска</h2>
+<table class="table">
+    <tr>
+        <th>Клиент</th>
+        <th>Товар</th>
+        <th>Количество</th>
+        <th>Дата</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>@Html.ActionLink(item.client.login, "Details", "clients", new { id = item.client_id }, null)</td>
+        <td>@Html.ActionLink(item.product.name, "Details", "products", new { id = item.product_id }, null)</td>
+        <td>@Html.DisplayFor(modelItem => item.count)</td>
+        <td>@Html.DisplayFor(modelItem => item.date)</td>
+        <td>
+            @Html.ActionLink("Править", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Подробности", "Details", new { id = item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+        </td>
+    </tr>
+    }
+</table>

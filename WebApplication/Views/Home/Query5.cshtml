@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Query5Result>
+@{
+    ViewBag.Title = "Результат запроса";
+}
+
+<h2>Результат запроса</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Среднее значение</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.average</td>
+        </tr>
+    }
+
+</table>

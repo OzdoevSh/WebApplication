@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Query11Result>
+@{
+    ViewBag.Title = "Результат запроса";
+}
+
+<h2>Результат запроса</h2>
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Клиент</th>
+        <th>Товар</th>
+        <th>Название товара</th>
+        <th>Цена товара</th>
+        <th>Количество</th>
+        <th>Дата</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.login, "Details", "clients", new { id = item.client_id }, null)</td>
+            <td>@Html.ActionLink(item.name, "Details", "products", new { id = item.product_id }, null)</td>
+            <td>@Html.DisplayFor(modelItem => item.productname)</td>
+            <td>@Html.DisplayFor(modelItem => item.productprice)</td>
+            <td>@Html.DisplayFor(modelItem => item.count)</td>
+            <td>@Html.DisplayFor(modelItem => item.date)</td>
+            <td>
+                @Html.ActionLink("Править", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Подробности", "Details", new { id = item.id }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.id })
+            </td>
+
+        </tr>
+    }
+
+</table>

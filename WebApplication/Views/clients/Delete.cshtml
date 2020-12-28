@@ -1,0 +1,37 @@
+﻿@model WebApplication.Models.client
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Вы уверены, что хотите удалить данного клиента?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Имя</dt>
+        <dd>@Html.DisplayFor(model => model.firstname)</dd>
+        <dt>Фамилия</dt>
+        <dd>@Html.DisplayFor(model => model.lastname)</dd>
+        <dt>Отчество</dt>
+        <dd>@Html.DisplayFor(model => model.patronymic)</dd>
+        <dt>Логин</dt>
+        <dd>@Html.DisplayFor(model => model.login)</dd>
+        <dt>Пароль</dt>
+        <dd>@Html.DisplayFor(model => model.password)</dd>
+        <dt>Почта</dt>
+        <dd>@Html.DisplayFor(model => model.email)</dd>
+        <dt>Адрес</dt>
+        <dd>@Html.DisplayFor(model => model.address)</dd>
+        <dt>Телефон</dt>
+        <dd>@Html.DisplayFor(model => model.phone)</dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("К списку клиентов", "Index")
+        </div>
+    }
+</div>

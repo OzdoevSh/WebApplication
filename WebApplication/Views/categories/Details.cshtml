@@ -1,0 +1,21 @@
+﻿@model WebApplication.Models.category
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробности категории</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>@Html.DisplayFor(model => model.name)</dd>
+        <dt>ParentName</dt>
+        <dd>@Html.DisplayFor(model => model.category2.name)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Править", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("К списку", "Index")
+</p>

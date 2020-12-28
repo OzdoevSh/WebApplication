@@ -1,0 +1,30 @@
+﻿@model WebApplication.Models.product
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Вы уверены, что хотите удалить этот товар?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Название</dt>
+        <dd>@Html.DisplayFor(model => model.name)</dd>
+        <dt>Цена</dt>
+        <dd>@Html.DisplayFor(model => model.price)</dd>
+        <dt>Количество</dt>
+        <dd>@Html.DisplayFor(model => model.count)</dd>
+        <dt>Версия</dt>
+        <dd>@Html.DisplayFor(model => model.version)</dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("К списку товаров", "Index")
+        </div>
+    }
+</div>

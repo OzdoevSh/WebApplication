@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Queries";
+}
+
+<h2>Запросы</h2>
+<div class="row">
+    @using (Html.BeginForm("Query1", "Home"))
+    {
+        <p>
+            Информация и депозит клиента с именем
+            <input type="text" name="queryText1" style="height: 30px; width: 100px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+    @using (Html.BeginForm("Query2", "Home"))
+    {
+        <p>
+            Информация и депозит клиентов с размером депозита от
+            <input type="text" name="from" style="height: 30px; width: 50px" />
+            до
+            <input type="text" name="to" style="height: 30px; width: 50px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+    @using (Html.BeginForm("Query3", "Home"))
+    {
+        <p>
+            Общая стоимость каждого продукта на складе 
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query4", "Home"))
+    {
+        <p>
+            Выбрать корзины клиентов, у которых имя содержит 
+            <input type="text" name="regex" style="height: 30px; width: 100px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query5", "Home"))
+    {
+        <p>
+            Выбрать среднее значение депозитов тех клиентов, у которых телефон начинается на
+            <input type="text" name="digit" style="height: 30px; width: 30px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query6", "Home"))
+    {
+        <p>
+            Выбрать товары с ценой больше
+            <input type="text" name="price" style="height: 30px; width: 30px" />
+            и покупки с количеством товара больше
+            <input type="text" name="price" style="height: 30px; width: 30px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query7", "Home"))
+    {
+        <p>
+            Выбрать все подкатегории
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query8", "Home"))
+    {
+        <p>
+            Выбрать информацию, размер депозит, и все покупки клиентов в городе
+            <input type="text" name="city" style="height: 30px; width: 100px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query9", "Home"))
+    {
+        <p>
+            Выбрать товары, принадлежащие категории
+            <input type="text" name="name" style="height: 30px; width: 100px" />
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+
+    @using (Html.BeginForm("Query10", "Home"))
+    {
+        <p>
+            Выбрать содержимое корзины, информацию, размер депозита клиента, в порядке логинов клиентов
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+    @using (Html.BeginForm("Query11", "Home"))
+    {
+        <p>
+            Выбрать покупки начиная с 
+            <input type="date" name="from" style="height: 30px; width: 150px"/>
+            по 
+            <input type="date" name="to" style="height: 30px; width: 150px"/>
+            <input type="submit" value="Выполнить" class="btn btn-default" />
+        </p>
+    }
+</div>

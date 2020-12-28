@@ -1,0 +1,30 @@
+﻿@model WebApplication.Models.purchase
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробности</h2>
+
+<div>
+    <h4>Покупка</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.productname)</dt>
+        <dd>@Html.DisplayFor(model => model.productname)</dd>
+        <dt>@Html.DisplayNameFor(model => model.productprice)</dt>
+        <dd>@Html.DisplayFor(model => model.productprice)</dd>
+        <dt>@Html.DisplayNameFor(model => model.count)</dt>
+        <dd>@Html.DisplayFor(model => model.count)</dd>
+        <dt>@Html.DisplayNameFor(model => model.date)</dt>
+        <dd>@Html.DisplayFor(model => model.date)</dd>
+        <dt>@Html.DisplayNameFor(model => model.client.firstname)</dt>
+        <dd>@Html.DisplayFor(model => model.client.firstname)</dd>
+        <dt>@Html.DisplayNameFor(model => model.product.name)</dt>
+        <dd>@Html.DisplayFor(model => model.product.name)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Править", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Вернуться к списку", "Index")
+</p>

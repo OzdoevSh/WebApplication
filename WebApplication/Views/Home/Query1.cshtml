@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication.Models.deposit>
+
+<table class="table">
+    <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Отчество</th>
+        <th>Логин</th>
+        <th>Пароль</th>
+        <th>Почта</th>
+        <th>Адрес</th>
+        <th>Телефон</th>
+        <th>Размер депозита</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.patronymic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.client.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.value)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

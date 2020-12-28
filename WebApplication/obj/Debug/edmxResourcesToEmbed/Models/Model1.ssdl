@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище shopModel1" Provider="Npgsql" ProviderManifestToken="11.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="position" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="basket">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="client_id" Type="int4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="basketitem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="basket_id" Type="int4" Nullable="false" />
+    <Property Name="product_id" Type="int4" Nullable="false" />
+    <Property Name="count" Type="int4" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="parentid" Type="int4" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="patronymic" Type="varchar" MaxLength="50" />
+    <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="deposit">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="client_id" Type="int4" Nullable="false" />
+    <Property Name="value" Type="int4" Nullable="false" />
+    <Property Name="version" Type="int4" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="price" Type="int4" Nullable="false" />
+    <Property Name="count" Type="int4" />
+    <Property Name="version" Type="int4" />
+  </EntityType>
+  <EntityType Name="product_category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_id" Type="int4" Nullable="false" />
+    <Property Name="category_id" Type="int4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="purchase">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="client_id" Type="int4" Nullable="false" />
+    <Property Name="product_id" Type="int4" Nullable="false" />
+    <Property Name="productname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="productprice" Type="int4" Nullable="false" />
+    <Property Name="count" Type="int4" />
+    <Property Name="date" Type="date" />
+  </EntityType>
+  <Association Name="basket_client_id_fkey">
+    <End Role="client" Type="Self.client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="basket" Type="Self.basket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="basket">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="basketitem_basket_id_fkey">
+    <End Role="basket" Type="Self.basket" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="basketitem" Type="Self.basketitem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="basket">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="basketitem">
+        <PropertyRef Name="basket_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="basketitem_product_id_fkey">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="basketitem" Type="Self.basketitem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="basketitem">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="category_parentid_fkey">
+    <End Role="category" Type="Self.category" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="category1" Type="Self.category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category1">
+        <PropertyRef Name="parentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="deposit_client_id_fkey">
+    <End Role="client" Type="Self.client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="deposit" Type="Self.deposit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="deposit">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="product_category_category_id_fkey">
+    <End Role="category" Type="Self.category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="product_category" Type="Self.product_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product_category">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="product_category_product_id_fkey">
+    <End Role="product" Type="Self.product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="product_category" Type="Self.product_category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product_category">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="purchase_client_id_fkey">
+    <End Role="client" Type="Self.client" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="client_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="purchase_product_id_fkey">
+    <End Role="product" Type="Self.product" Multiplicity="1" />
+    <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище shopModel1Container">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="public" store:Type="Tables" />
+    <EntitySet Name="basket" EntityType="Self.basket" Schema="public" store:Type="Tables" />
+    <EntitySet Name="basketitem" EntityType="Self.basketitem" Schema="public" store:Type="Tables" />
+    <EntitySet Name="category" EntityType="Self.category" Schema="public" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="public" store:Type="Tables" />
+    <EntitySet Name="deposit" EntityType="Self.deposit" Schema="public" store:Type="Tables" />
+    <EntitySet Name="product" EntityType="Self.product" Schema="public" store:Type="Tables" />
+    <EntitySet Name="product_category" EntityType="Self.product_category" Schema="public" store:Type="Tables" />
+    <EntitySet Name="purchase" EntityType="Self.purchase" Schema="public" store:Type="Tables" />
+    <AssociationSet Name="basket_client_id_fkey" Association="Self.basket_client_id_fkey">
+      <End Role="client" EntitySet="client" />
+      <End Role="basket" EntitySet="basket" />
+    </AssociationSet>
+    <AssociationSet Name="basketitem_basket_id_fkey" Association="Self.basketitem_basket_id_fkey">
+      <End Role="basket" EntitySet="basket" />
+      <End Role="basketitem" EntitySet="basketitem" />
+    </AssociationSet>
+    <AssociationSet Name="basketitem_product_id_fkey" Association="Self.basketitem_product_id_fkey">
+      <End Role="product" EntitySet="product" />
+      <End Role="basketitem" EntitySet="basketitem" />
+    </AssociationSet>
+    <AssociationSet Name="category_parentid_fkey" Association="Self.category_parentid_fkey">
+      <End Role="category" EntitySet="category" />
+      <End Role="category1" EntitySet="category" />
+    </AssociationSet>
+    <AssociationSet Name="deposit_client_id_fkey" Association="Self.deposit_client_id_fkey">
+      <End Role="client" EntitySet="client" />
+      <End Role="deposit" EntitySet="deposit" />
+    </AssociationSet>
+    <AssociationSet Name="product_category_category_id_fkey" Association="Self.product_category_category_id_fkey">
+      <End Role="category" EntitySet="category" />
+      <End Role="product_category" EntitySet="product_category" />
+    </AssociationSet>
+    <AssociationSet Name="product_category_product_id_fkey" Association="Self.product_category_product_id_fkey">
+      <End Role="product" EntitySet="product" />
+      <End Role="product_category" EntitySet="product_category" />
+    </AssociationSet>
+    <AssociationSet Name="purchase_client_id_fkey" Association="Self.purchase_client_id_fkey">
+      <End Role="client" EntitySet="client" />
+      <End Role="purchase" EntitySet="purchase" />
+    </AssociationSet>
+    <AssociationSet Name="purchase_product_id_fkey" Association="Self.purchase_product_id_fkey">
+      <End Role="product" EntitySet="product" />
+      <End Role="purchase" EntitySet="purchase" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
